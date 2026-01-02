@@ -243,7 +243,7 @@ BEGIN
         
 		PRINT '>> Inserting Data Into: bronze.erp_products';
 		BULK INSERT bronze.erp_products
-        FROM '/var/opt/mssql/data/olist_products_dataset.csv'
+        FROM '/var/opt/mssql/data/Datasets/OLIST/source_erp/olist_products_dataset.csv'
         WITH (
             FIRSTROW = 2,
             FIELDTERMINATOR = ',',
@@ -271,7 +271,7 @@ BEGIN
 
 		PRINT '>> Inserting Data Into: bronze.erp_product_categories';
 		BULK INSERT bronze.erp_product_categories
-        FROM '/var/opt/mssql/data/product_category_name_translation.csv'
+        FROM '/var/opt/mssql/data/Datasets/OLIST/source_erp/product_category_name_translation.csv'
         WITH (
             FIRSTROW = 2,
             FIELDTERMINATOR = ',',
