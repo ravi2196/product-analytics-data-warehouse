@@ -1,3 +1,6 @@
+-- 02
+-- USE ProductAnalysis_DWH;
+
 /*
 ===============================================================================
 DDL Script: Create Bronze Tables
@@ -47,11 +50,11 @@ CREATE TABLE bronze.crm_sellers (
 );
 GO
 
-IF OBJECT_ID('bronze.erp_orders', 'U') IS NOT NULL
-    DROP TABLE bronze.erp_orders;
+IF OBJECT_ID('bronze.oms_orders', 'U') IS NOT NULL
+    DROP TABLE bronze.oms_orders;
 GO
 
-CREATE TABLE bronze.erp_orders (
+CREATE TABLE bronze.oms_orders (
     order_id                      VARCHAR(50),
     customer_id                   VARCHAR(50),
     order_status                  VARCHAR(30),
@@ -63,11 +66,11 @@ CREATE TABLE bronze.erp_orders (
 );
 GO
 
-IF OBJECT_ID('bronze.erp_order_items', 'U') IS NOT NULL
-    DROP TABLE bronze.erp_order_items;
+IF OBJECT_ID('bronze.oms_order_items', 'U') IS NOT NULL
+    DROP TABLE bronze.oms_order_items;
 GO
 
-CREATE TABLE bronze.erp_order_items (
+CREATE TABLE bronze.oms_order_items (
     order_id            VARCHAR(50),
     order_item_id       INT,
     product_id          VARCHAR(50),
@@ -78,11 +81,11 @@ CREATE TABLE bronze.erp_order_items (
 );
 GO
 
-IF OBJECT_ID('bronze.erp_payments', 'U') IS NOT NULL
-    DROP TABLE bronze.erp_payments;
+IF OBJECT_ID('bronze.oms_payments', 'U') IS NOT NULL
+    DROP TABLE bronze.oms_payments;
 GO
 
-CREATE TABLE bronze.erp_payments (
+CREATE TABLE bronze.oms_payments (
     order_id              VARCHAR(50),
     payment_sequential    INT,
     payment_type          VARCHAR(30),
@@ -91,11 +94,11 @@ CREATE TABLE bronze.erp_payments (
 );
 GO
 
-IF OBJECT_ID('bronze.erp_reviews', 'U') IS NOT NULL
-    DROP TABLE bronze.erp_reviews;
+IF OBJECT_ID('bronze.oms_reviews', 'U') IS NOT NULL
+    DROP TABLE bronze.oms_reviews;
 GO
 
-CREATE TABLE bronze.erp_reviews (
+CREATE TABLE bronze.oms_reviews (
     review_id                VARCHAR(MAX),
     order_id                 VARCHAR(MAX),
     review_score             VARCHAR(MAX),
