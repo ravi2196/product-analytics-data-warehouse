@@ -44,8 +44,8 @@ BEGIN
 		TRUNCATE TABLE bronze.crm_customers;
 
 		PRINT '>> Inserting Data Into: bronze.crm_cust_info';
-		 BULK INSERT bronze.crm_customers
-        FROM '/var/opt/mssql/data/olist_customers_dataset.csv'
+		BULK INSERT bronze.crm_customers
+        FROM '/var/opt/mssql/data/Datasets/OLIST/source_crm/olist_customers_dataset.csv'
         WITH (
             FIRSTROW = 2,
             FIELDTERMINATOR = ',',
@@ -72,7 +72,7 @@ BEGIN
 
 		PRINT '>> Inserting Data Into: bronze.crm_geolocations';
 		BULK INSERT bronze.crm_geolocations
-        FROM '/var/opt/mssql/data/olist_geolocation_dataset.csv'
+        FROM '/var/opt/mssql/data/Datasets/OLIST/source_crm/olist_geolocation_dataset.csv'
         WITH (
             FIRSTROW = 2,
             FIELDTERMINATOR = ',',
@@ -99,7 +99,7 @@ BEGIN
 
 		PRINT '>> Inserting Data Into: bronze.crm_sellers';
 		BULK INSERT bronze.crm_sellers
-        FROM '/var/opt/mssql/data/olist_sellers_dataset.csv'
+        FROM '/var/opt/mssql/data/Datasets/OLIST/source_crm/olist_sellers_dataset.csv'
         WITH (
             FIRSTROW = 2,
             FIELDTERMINATOR = ',',
@@ -116,7 +116,7 @@ BEGIN
 		PRINT '>> -------------';
 
 		PRINT '------------------------------------------------';
-		PRINT 'Loading ERP Tables';
+		PRINT 'Loading OMS Tables';
 		PRINT '------------------------------------------------';
 		
 		SET @start_time = CAST(
@@ -125,12 +125,12 @@ BEGIN
                     AT TIME ZONE 'India Standard Time'
                 AS DATETIME
             );
-		PRINT '>> Truncating Table: bronze.erp_orders';
-		TRUNCATE TABLE bronze.erp_orders;
+		PRINT '>> Truncating Table: bronze.oms_orders';
+		TRUNCATE TABLE bronze.oms_orders;
 
-		PRINT '>> Inserting Data Into: bronze.erp_orders';
-		BULK INSERT bronze.erp_orders
-        FROM '/var/opt/mssql/data/olist_orders_dataset.csv'
+		PRINT '>> Inserting Data Into: bronze.oms_orders';
+		BULK INSERT bronze.oms_orders
+        FROM '/var/opt/mssql/data/Datasets/OLIST/source_oms/olist_orders_dataset.csv'
         WITH (
             FIRSTROW = 2,
             FIELDTERMINATOR = ',',
@@ -152,12 +152,12 @@ BEGIN
                     AT TIME ZONE 'India Standard Time'
                 AS DATETIME
             );
-		PRINT '>> Truncating Table: bronze.erp_order_items';
-		TRUNCATE TABLE bronze.erp_order_items;
+		PRINT '>> Truncating Table: bronze.oms_order_items';
+		TRUNCATE TABLE bronze.oms_order_items;
 
-		PRINT '>> Inserting Data Into: bronze.erp_order_items';
-		BULK INSERT bronze.erp_order_items
-        FROM '/var/opt/mssql/data/olist_order_items_dataset.csv'
+		PRINT '>> Inserting Data Into: bronze.oms_order_items';
+		BULK INSERT bronze.oms_order_items
+        FROM '/var/opt/mssql/data/Datasets/OLIST/source_oms/olist_order_items_dataset.csv'
         WITH (
             FIRSTROW = 2,
             FIELDTERMINATOR = ',',
@@ -179,12 +179,12 @@ BEGIN
                     AT TIME ZONE 'India Standard Time'
                 AS DATETIME
             );
-		PRINT '>> Truncating Table: bronze.erp_payments';
-		TRUNCATE TABLE bronze.erp_payments;
+		PRINT '>> Truncating Table: bronze.oms_payments';
+		TRUNCATE TABLE bronze.oms_payments;
 
-		PRINT '>> Inserting Data Into: bronze.erp_payments';
-		BULK INSERT bronze.erp_payments
-        FROM '/var/opt/mssql/data/olist_order_payments_dataset.csv'
+		PRINT '>> Inserting Data Into: bronze.oms_payments';
+		BULK INSERT bronze.oms_payments
+        FROM '/var/opt/mssql/data/Datasets/OLIST/source_oms/olist_order_payments_dataset.csv'
         WITH (
             FIRSTROW = 2,
             FIELDTERMINATOR = ',',
@@ -206,12 +206,12 @@ BEGIN
                     AT TIME ZONE 'India Standard Time'
                 AS DATETIME
             );
-		PRINT '>> Truncating Table: bronze.erp_reviews';
-		TRUNCATE TABLE bronze.erp_reviews;
+		PRINT '>> Truncating Table: bronze.oms_reviews';
+		TRUNCATE TABLE bronze.oms_reviews;
 
-		PRINT '>> Inserting Data Into: bronze.erp_reviews';
-		BULK INSERT bronze.erp_reviews
-        FROM '/var/opt/mssql/data/olist_order_reviews_dataset.csv'
+		PRINT '>> Inserting Data Into: bronze.oms_reviews';
+		BULK INSERT bronze.oms_reviews
+        FROM '/var/opt/mssql/data/Datasets/OLIST/source_oms/olist_order_reviews_dataset.csv'
         WITH (
             FIRSTROW = 2,
             FIELDTERMINATOR = ',',
@@ -226,6 +226,11 @@ BEGIN
             );
 		PRINT '>> Load Duration: ' + CAST(DATEDIFF(second, @start_time, @end_time) AS NVARCHAR) + ' seconds';
 		PRINT '>> -------------';
+
+		PRINT '------------------------------------------------';
+		PRINT 'Loading ERP Tables';
+		PRINT '------------------------------------------------';
+
 
         SET @start_time = CAST(
                 SYSDATETIMEOFFSET()
