@@ -1,6 +1,3 @@
--- 02
--- USE ProductAnalysis_DWH;
-
 /*
 ===============================================================================
 DDL Script: Create Bronze Tables
